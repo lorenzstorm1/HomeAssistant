@@ -22,11 +22,11 @@ config:
 
 http:
   api_password: !secret http_password
-  ssl_certificate: /etc/letsencrypt/live/kxsoupeluc2yczbt.myfritz.net/fullchain.pem
-  ssl_key: /etc/letsencrypt/live/kxsoupeluc2yczbt.myfritz.net/privkey.pem     
+  ssl_certificate: !secret ssl_cert
+  ssl_key: !secret ssl_key  
   ip_ban_enabled: True
   login_attempts_threshold: 5
-  base_url: https://kxsoupeluc2yczbt.myfritz.net
+  base_url: !secret base_url
 
 # Checks for available updates
 # Note: This component will send some information about your system to

@@ -1,0 +1,131 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 48.1057
+  longitude: 11.7777
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 547
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Berlin
+  # Customization file
+  customize: !include customize.yaml
+
+  
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  api_password: !secret http_password
+  ssl_certificate: /etc/letsencrypt/live/kxsoupeluc2yczbt.myfritz.net/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/kxsoupeluc2yczbt.myfritz.net/privkey.pem     
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
+  base_url: https://kxsoupeluc2yczbt.myfritz.net
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  - platform: google
+
+zwave:
+    config_path: /srv/homeassistant/src/python-openzwave/openzwave/config
+    usb_path: /dev/ttyACM0
+
+homematic:
+  hosts:
+    wireless:
+      ip: 192.168.178.28
+      
+media_player 2:
+    platform: spotify
+    client_id: 6de2e7db6d7d4ae2ab9e0724f1af42de
+    client_secret: !secret spotify_secret
+    
+input_number:
+  alarm_clock_hour:
+    initial: 6
+    min: 0
+    max: 23
+    step: 1
+    
+  alarm_clock_minute:
+    initial: 5
+    min: 0
+    max: 55
+    step: 5
+    
+input_boolean:
+  alarm_clock_status:
+    initial: on
+  wach:
+    initial: on
+    
+binary_sensor:
+ - platform: workday
+   country: DE
+   province: BY
+    
+shell_command:
+ standby_lorenzpc: 'curl -k http://lorenzpc:8000/?action=System.Sleep'
+
+switch:
+    platform: wake_on_lan
+    mac_address: "00-26-18-94-0F-F7"
+    name: PC
+    host: 192.168.178.20
+    turn_off:
+     service: shell_command.standby_lorenzpc
+     
+ios:
+
+light:
+  - platform: flux_led
+    devices:
+      192.168.178.31:
+        name: LED_Fernseher
+  - platform: limitlessled
+    bridges:
+      - host: 192.168.178.33
+        groups:
+        - number: 1
+          name: LED_Schlafzimmerschrank
+          type: white
+        - number: 2
+          name: LED_Couch
+          type: white
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include script/turn_on.yaml
+zone: !include zones.yaml
+sensor: !include sensors.yaml
+

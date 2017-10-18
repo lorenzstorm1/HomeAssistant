@@ -1,0 +1,42 @@
+sensor.time:
+  friendly_name: Uhrzeit
+device_tracker.lorenz:
+  friendly_name: Lorenz
+sensor.meq1571948_humidity:
+  friendly_name: Luftfeuchtigkeit
+binary_sensor.oeq0200136_state:
+  friendly_name: Wohnzimmer Fenster
+binary_sensor.oeq0439486_state:
+  friendly_name: Schlafzimmer Fenster
+cover.rollo_schlafzimmer_level:
+  friendly_name: Schlafzimmer
+cover.rollo_terrasse_level:
+  friendly_name: Terrasse
+cover.rollo_schreibtisch_level:
+  friendly_name: Schreibtisch
+cover.rollo_boeschung_level:
+  friendly_name: Boeschung
+cover.rollo_kueche_level:
+  friendly_name: Kueche
+switch.licht_gang_switch:
+  friendly_name: Gang
+light.led_couch:
+  friendly_name: Couch
+light.led_fernseher:
+  friendly_name: Fernseher
+light.led_schlafzimmerschrank:
+  friendly_name: Schlafzimmerschrank
+climate.heizung_bad_heating_1:
+  friendly_name: Bad
+climate.meq1571948:
+  friendly_name: Wohnzimmer
+climate.oeq0656918:
+  friendly_name: Schlafzimmer
+sensor.alarm_clock_time:
+  friendly_name: Weckzeit
+input_number.alarm_clock_hour:
+  friendly_name: Stunde
+input_number.alarm_clock_minute:
+  friendly_name: Minute
+input_boolean.alarm_clock_status:
+  friendly_name: Status

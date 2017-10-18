@@ -1,0 +1,57 @@
+alarm_clock:
+    name: 'Wecker'
+    control: hidden
+    entities:
+      - sensor.alarm_clock_time
+      - input_number.alarm_clock_hour
+      - input_number.alarm_clock_minute
+      - input_boolean.alarm_clock_status
+      
+heizung:
+    name: 'Heizung'
+    entities:
+      - climate.heizung_bad_heating_1
+      - climate.meq1571948
+      - climate.oeq0656918
+      - sensor.meq1571948_humidity
+      - binary_sensor.oeq0200136_state
+      - binary_sensor.oeq0439486_state
+      
+licht:
+    name: 'Licht'
+    control: hidden
+    entities:
+      - switch.licht_gang_switch
+      - light.led_couch
+      - light.led_fernseher
+      - light.led_schlafzimmerschrank
+      
+jalousien:
+    name: 'Jalousien'
+    entities:
+      - cover.rollo_boeschung_level
+      - cover.rollo_kueche_level
+      - cover.rollo_schlafzimmer_level
+      - cover.rollo_terrasse_level
+      - cover.rollo_schreibtisch_level
+      
+Home2:
+    name: Home2
+    view: yes
+    entities:
+      - group.alarm_clock
+      - cover.rollo_boeschung_level
+      - cover.rollo_kueche_level
+      - cover.rollo_schlafzimmer_level
+      - cover.rollo_terrasse_level
+      - cover.rollo_schreibtisch_level
+      - media_player.spotify
+      - climate.heizung_bad_heating_1
+      - climate.meq1571948
+      - climate.oeq0656918
+      - device_tracker.lorenz
+      - sensor.time
+      - group.heizung
+      - group.licht
+      - group.jalousien
+      - script.aufstehen

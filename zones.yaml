@@ -1,0 +1,9 @@
+ - name: Home
+   latitude: 48.1057
+   longitude: 11.7777
+   radius: 100
+ 
+ - name: Work
+   latitude: 48.1913
+   longitude: 11.6492
+   radius: 500

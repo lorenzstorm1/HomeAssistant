@@ -1,0 +1,190 @@
+ - id: LED_an
+   alias: LED_an
+   trigger:
+   - platform: sun
+     event: sunset
+     offset: "-2:00:00"
+   condition:
+   - condition: state
+     entity_id: device_tracker.lorenz
+     state: home
+   action:
+   - service: light.turn_on
+     data:
+       entity_id: light.led_fernseher
+   - service: light.turn_on
+     data:
+       entity_id: light.LED_Couch
+       brightness: 127 
+       
+ - id: LED:_an2
+   alias: Led_an2
+   trigger:
+   - platform: zone
+     entity_id: device_tracker.lorenz
+     zone: zone.home
+     event: enter
+   condition:
+     condition: sun
+     after: sunset
+     after_offset: "-2:00:00"
+   action:
+   - service: light.turn_on
+     data:
+       entity_id: light.led_fernseher
+   - service: light.turn_on
+     data:
+       entity_id: light.LED_Couch
+       brightness: 127
+       
+ - id: Rollo_runter       
+   alias: Rollo_runter
+   trigger:
+   - platform: sun
+     event: sunset
+     offset: "+0:15:00"
+   action:
+   - service: cover.close_cover
+     data:
+       entity_id: 
+         - cover.rollo_boeschung_level
+         - cover.rollo_kueche_level
+         - cover.rollo_schlafzimmer_level
+         - cover.rollo_terrasse_level
+         - cover.rollo_schreibtisch_level
+      
+ - id: Gang_Licht_an
+   alias: Gang_Licht_an
+   trigger:
+   - platform: state
+     entity_id: switch.licht_gang_switch_2
+   action:
+   - service: switch.toggle
+     entity_id: switch.licht_gang_switch
+     
+ - id: Bewegung_Gang_an     
+   alias: Bewegung_Gang_an
+   trigger:
+   - platform: state
+     entity_id: sensor.sensor_gang_burglar
+     to: "8"
+   action:
+   - service: switch.turn_on
+     entity_id: switch.licht_gang_switch
+     
+ - id: Bewegung_Gang_aus     
+   alias: Bewegung_Gang_aus
+   trigger:
+   - platform: state
+     entity_id: sensor.sensor_gang_burglar
+     to: "0"
+     for:
+       minutes: 5
+   action:
+   - service: switch.turn_off
+     entity_id: switch.licht_gang_switch
+     
+ - id: Schlafzimmerschrank_an_abends     
+   alias: Schlafzimmerschrank_an_abends
+   trigger:
+   - platform: time
+     at: "21:00:00"
+   condition:
+     condition: and
+     conditions:
+       - condition: state
+         entity_id: device_tracker.lorenz
+         state: home
+       - condition: state
+         entity_id: input_boolean.wach
+         state: 'on'
+   action:
+   - service: light.turn_on
+     data:
+       entity_id: light.LED_Schlafzimmerschrank
+       brightness: 255
+       
+ - id: Nicht_daheim       
+   alias: Nicht_daheim
+   hide_entity: True
+   trigger:
+   - platform: zone
+     entity_id: device_tracker.lorenz
+     zone: zone.home
+     event: leave
+   action:
+   - service: light.turn_off
+     data:
+       entity_id: light.led_fernseher
+   - service: light.turn_off
+     data:
+       entity_id: light.LED_Schlafzimmerschrank
+   - service: shell_command.standby_lorenzpc
+   - service: climate.set_temperature
+     entity_id: climate.meq1571948
+     data:
+       temperature: 20 
+   - service: climate.set_temperature
+     entity_id: climate.heizung_bad_heating_1
+     data:
+       temperature: 21
+       
+ - id: Wecker       
+   alias: Wecker
+   hide_entity: False
+   trigger:
+     platform: template
+     value_template: '{{ states.sensor.time.state == states.sensor.alarm_clock_time_long.state }}'
+   condition:
+     condition: and
+     conditions:
+       - condition: state
+         entity_id: input_boolean.alarm_clock_status
+         state: 'on'
+       - condition: state
+         entity_id: input_boolean.wach
+         state: 'off'
+       - condition: state
+         entity_id: 'binary_sensor.workday_sensor'
+         state: 'on' 
+   action:
+     service: script.wecker
+
+ - id: Heizung_an_zone
+   alias: Heizung_an_zone
+   trigger:
+   - platform: zone
+     entity_id: device_tracker.lorenz
+     zone: zone.work
+     event: leave
+   action:
+   - service: climate.set_temperature
+     entity_id: climate.meq1571948
+     data:
+       temperature: 23      
+
+ - id: Heizung_an_Bad_abends       
+   alias: Heizung_an_Bad_abends
+   trigger:
+   - platform: time
+     at: "19:45:00"
+   condition:
+       condition: state
+       entity_id: device_tracker.lorenz
+       state: home
+   action:
+   - service: climate.set_temperature
+     entity_id: climate.heizung_bad_heating_1
+     data:
+       temperature: 24 
+
+ - id: Heizung_aus_Bad_abends       
+   alias: Heizung_aus_Bad_abends
+   trigger:
+   - platform: time
+     at: "20:30:00"
+   action:
+   - service: climate.set_temperature
+     entity_id: climate.heizung_bad_heating_1
+     data:
+       temperature: 21

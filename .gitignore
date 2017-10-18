@@ -1,6 +1,7 @@
 *
 !*.yaml
+!script
+!zwave_monitor
 !scenes
 !.gitignore
 secrets.yaml
-known_devices.yaml

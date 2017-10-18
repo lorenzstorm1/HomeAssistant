@@ -1,0 +1,9 @@
+
+lorenz:
+  hide_if_away: false
+  icon:
+  mac:
+  name: lorenz
+  picture:
+  track: true
+  vendor:

@@ -1,0 +1,211 @@
+#turn_on.yaml
+zrc90_button_1_1:
+  alias: "ZRC-90 control btn 1"
+  sequence:
+    - service: script.aufstehen        
+
+zrc90_button_1_3:
+  alias: "ZRC-90 control btn 1"
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.led_fernseher
+
+zrc90_button_2_1:
+  alias: "ZRC-90 control btn 1"
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.led_schlafzimmerschrank
+        transition: 5
+        brightness: 255
+
+zrc90_button_2_3:
+  alias: "ZRC-90 control btn 1"
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.led_fernseher              
+    
+zrc90_button_5_1:
+  alias: "ZRC-90 control btn 1"
+  sequence:
+    - service: script.schlafen  
+
+zrc90_button_5_3:
+  alias: "ZRC-90 control btn 1"
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.led_fernseher       
+
+zrc90_button_6_1:
+  alias: "ZRC-90 control btn 1"
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.led_schlafzimmerschrank
+        transition: 5
+        brightness: 170
+    - delay:
+        seconds: 5 
+    - service: light.turn_off
+      data:
+        entity_id: light.led_schlafzimmerschrank
+
+zrc90_button_6_3:
+  alias: "ZRC-90 control btn 1"
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.led_fernseher
+        
+        
+        
+        
+        
+        
+        
+aufstehen:
+  alias: "aufstehen"
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.licht_gang_switch1
+    - service: light.turn_on
+      data:
+        entity_id: light.LED_Schlafzimmerschrank
+        brightness: 255
+        transition: 5
+    - service: media_player.media_pause
+      data:
+        entity_id: media_player.Spotify
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.wach
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.meq1571948
+        temperature: 23
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.heizung_bad_heating_1
+        temperature: 24
+    - service: switch.turn_on
+      data:
+        entity_id: switch.licht_gang_switch
+    - delay:
+        minutes: 1      
+    - service: cover.open_cover
+      data:
+        entity_id:
+          - cover.rollo_boeschung_level
+          - cover.rollo_kueche_level
+          - cover.rollo_schlafzimmer_level
+          - cover.rollo_terrasse_level
+          - cover.rollo_schreibtisch_level
+    - delay:
+        seconds: 30          
+    - service: cover.open_cover
+      data:
+        entity_id:
+          - cover.rollo_boeschung_level       
+    - delay:
+        minutes: 4     
+    - service: light.turn_off
+      data:
+        entity_id: light.LED_Schlafzimmerschrank
+        transition: 5
+    - delay:
+        minutes: 15
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.heizung_bad_heating_1
+        temperature: 21
+        
+schlafen:
+  alias: "schlafen"
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.led_fernseher
+    - service: light.turn_off
+      data:
+        entity_id: light.led_Couch
+    - service: cover.close_cover
+      data:
+        entity_id:
+          - cover.rollo_boeschung_level
+          - cover.rollo_kueche_level
+          - cover.rollo_schlafzimmer_level
+          - cover.rollo_terrasse_level
+          - cover.rollo_schreibtisch_level           
+    - service: shell_command.standby_lorenzpc    
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.wach
+    - service: light.turn_on
+      data:
+        entity_id: light.led_schlafzimmerschrank
+        transition: 5
+        brightness: 170
+    - delay:
+        seconds: 5 
+    - service: light.turn_off
+      data:
+        entity_id: light.led_schlafzimmerschrank
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.meq1571948
+        temperature: 20
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.heizung_bad_heating_1
+        temperature: 21
+
+
+
+wecker:
+  alias: Wecker
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.led_schlafzimmerschrank
+        transition: 600
+        brightness: 255
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.Spotify
+        volume_level: 0.1
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.Spotify
+        source: "Lorenz' Echo Dot"         
+    - delay:
+        minutes: 5 
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.Spotify
+        media_content_type: playlist
+        media_content_id: spotify:user:1122106999:playlist:1P4CRHuQG1LKeLFJRKTe0Y
+    - delay:
+        minutes: 5
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.Spotify
+        volume_level: 0.3
+    - delay:
+        minutes: 5
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.Spotify
+        volume_level: 0.5
+       
+        
+        
+ledtest:
+  alias: ledtest
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.Spotify
+        volume_level: 0.2

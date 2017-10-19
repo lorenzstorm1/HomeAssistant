@@ -5,4 +5,5 @@
 !zwave-events.py
 !scenes
 !.gitignore
+gitupdate.sh
 secrets.yaml

@@ -40,3 +40,5 @@ input_number.alarm_clock_minute:
   friendly_name: Minute
 input_boolean.alarm_clock_status:
   friendly_name: Status
+sensor.sensor_terrasse_temperature:
+  friendly_name: Außen

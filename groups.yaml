@@ -55,3 +55,4 @@ Home2:
       - group.licht
       - group.jalousien
       - script.aufstehen
+      - sensor.sensor_terrasse_temperature

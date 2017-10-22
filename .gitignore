@@ -2,6 +2,7 @@
 !*.yaml
 !script
 !zwave_monitor
+!zwave-events.service
 !zwave-events.py
 !scenes
 !.gitignore

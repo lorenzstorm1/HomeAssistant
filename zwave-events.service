@@ -1,0 +1,16 @@
+# cat /lib/systemd/system/zwave-events.service 
+[Unit]
+Description=Home Assistant Zwave Custom Events
+#After=home-assistant@hass.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python /home/homeassistant/.homeassistant/zwave_monitor/zwave-events.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
+#WantedBy=basic.target

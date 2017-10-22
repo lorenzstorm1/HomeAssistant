@@ -38,7 +38,7 @@
 - id: Rollo_runter2
   alias: Rollo_runter2
   trigger:
-  - below: 50
+  - below: 100
     entity_id: sensor.sensor_terrasse_luminance
     platform: numeric_state
   action:
@@ -68,7 +68,7 @@
       - cover.rollo_schreibtisch_level
     service: cover.close_cover
   condition:
-  - below: '50'
+  - below: '100'
     condition: numeric_state
     entity_id: sensor.sensor_terrasse_luminance
 - id: Gang_Licht_an

@@ -7,9 +7,7 @@
  - platform: time_date
    display_options:
      - 'time'
-     
- - platform: fritzbox_netmonitor
-      
+           
  - platform: template
    sensors:
      alarm_clock_hour:

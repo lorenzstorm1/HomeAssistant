@@ -156,7 +156,7 @@ schlafen:
     - service: climate.set_temperature
       data:
         entity_id: climate.meq1571948
-        temperature: 20
+        temperature: 21
     - service: climate.set_temperature
       data:
         entity_id: climate.heizung_bad_heating_1

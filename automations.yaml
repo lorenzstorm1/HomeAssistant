@@ -137,7 +137,7 @@
   - service: climate.set_temperature
     entity_id: climate.meq1571948
     data:
-      temperature: 20
+      temperature: 21
   - service: climate.set_temperature
     entity_id: climate.heizung_bad_heating_1
     data:

@@ -139,7 +139,7 @@
     data:
       temperature: 21
   - service: climate.set_temperature
-    entity_id: climate.heizung_bad_heating_1
+    entity_id: climate.oeq0854702
     data:
       temperature: 21
 - id: Wecker
@@ -186,7 +186,7 @@
     state: home
   action:
   - service: climate.set_temperature
-    entity_id: climate.heizung_bad_heating_1
+    entity_id: climate.oeq0854702
     data:
       temperature: 24
 - id: Heizung_aus_Bad_abends
@@ -196,6 +196,6 @@
     at: '20:30:00'
   action:
   - service: climate.set_temperature
-    entity_id: climate.heizung_bad_heating_1
+    entity_id: climate.oeq0854702
     data:
       temperature: 21

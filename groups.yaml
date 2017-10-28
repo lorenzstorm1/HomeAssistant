@@ -10,7 +10,8 @@ alarm_clock:
 heizung:
     name: 'Heizung'
     entities:
-      - climate.heizung_bad_heating_1
+      - climate.oeq0854702
+      - climate.oeq0856177
       - climate.meq1571948
       - climate.oeq0656918
       - sensor.meq1571948_humidity
@@ -40,15 +41,7 @@ Home2:
     view: yes
     entities:
       - group.alarm_clock
-      - cover.rollo_boeschung_level
-      - cover.rollo_kueche_level
-      - cover.rollo_schlafzimmer_level
-      - cover.rollo_terrasse_level
-      - cover.rollo_schreibtisch_level
       - media_player.spotify
-      - climate.heizung_bad_heating_1
-      - climate.meq1571948
-      - climate.oeq0656918
       - device_tracker.lorenz
       - sensor.time
       - group.heizung

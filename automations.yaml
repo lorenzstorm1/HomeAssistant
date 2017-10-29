@@ -16,6 +16,10 @@
     data:
       entity_id: light.LED_Couch
       brightness: 127
+  - service: light.turn_on
+    data:
+      entity_id: light.Stehlampe
+      brightness: 127
 - id: LED:_an2
   alias: Led_an2
   trigger:
@@ -34,6 +38,10 @@
   - service: light.turn_on
     data:
       entity_id: light.LED_Couch
+      brightness: 127
+  - service: light.turn_on
+    data:
+      entity_id: light.Stehlampe
       brightness: 127
 - id: Rollo_runter2
   alias: Rollo_runter2

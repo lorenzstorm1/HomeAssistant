@@ -122,6 +122,9 @@ light:
         - number: 2
           name: LED_Couch
           type: white
+        - number: 3
+          name: Stehlampe
+          type: white
 
 group: !include groups.yaml
 automation: !include automations.yaml

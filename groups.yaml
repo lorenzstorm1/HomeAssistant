@@ -26,6 +26,7 @@ licht:
       - light.led_couch
       - light.led_fernseher
       - light.led_schlafzimmerschrank
+      - light.Stehlampe
       
 jalousien:
     name: 'Jalousien'

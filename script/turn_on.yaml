@@ -131,6 +131,9 @@ schlafen:
     - service: light.turn_off
       data:
         entity_id: light.led_Couch
+    - service: light.turn_off
+      data:
+        entity_id: light.Stehlampe
     - service: cover.close_cover
       data:
         entity_id:

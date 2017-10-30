@@ -1,9 +1,9 @@
 - id: LED_an
   alias: LED_an
   trigger:
-  - platform: sun
-    event: sunset
-    offset: '-2:00:00'
+  - below: 100
+    entity_id: sensor.sensor_terrasse_luminance
+    platform: numeric_state
   condition:
   - condition: state
     entity_id: device_tracker.lorenz
@@ -28,9 +28,9 @@
     zone: zone.home
     event: enter
   condition:
-    condition: sun
-    after: sunset
-    after_offset: '-2:00:00'
+  - below: '100'
+    condition: numeric_state
+    entity_id: sensor.sensor_terrasse_luminance
   action:
   - service: light.turn_on
     data:
